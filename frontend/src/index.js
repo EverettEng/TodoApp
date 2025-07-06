@@ -1,34 +1,42 @@
-import React from 'react';
+// Entry point for the React application
+// Sets up routing for all main pages using React Router
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LoginPage from './pages/LoginPage';
-import TodoPage from './pages/TodoPage';
-import ProfilePage from './pages/ProfilePage';
-import SignUpPage from './pages/SignUpPage';
-import NotFoundPage from "./pages/NotFoundPage"
+import LoginPage from "./pages/LoginPage";
+import TodoPage from "./pages/TodoPage";
+import ProfilePage from "./pages/ProfilePage";
+import SignUpPage from "./pages/SignUpPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import InfoPage from "./pages/InfoPage";
 
+// Define all routes for the app
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <TodoPage />,
-    errorElement: <NotFoundPage />
+    element: <InfoPage />,
   },
   {
-    path: '/login',
+    path: "/home",
+    element: <TodoPage />,
+    errorElement: <NotFoundPage />,
+  },
+  {
+    path: "/login",
     element: <LoginPage />,
   },
   {
-    path: '/profile',
+    path: "/profile",
     element: <ProfilePage />,
   },
   {
-    path: '/signup',
+    path: "/signup",
     element: <SignUpPage />,
   },
 ]);
 
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// Mount the app to the root div
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />

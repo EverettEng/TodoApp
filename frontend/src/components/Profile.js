@@ -1,5 +1,7 @@
+// Profile component displays user profile information
 const Profile = () => {
-    return <div>Profile</div>
-}
+  // Render the profile section
+  return <div>Profile</div>;
+};
 
-export default Profile
+export default Profile;

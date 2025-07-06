@@ -1,5 +1,7 @@
+// Todos component displays the user's todo list
 const Todos = () => {
-    return <div>Todos</div>
-}
+  // Render the todos section
+  return <div>Todos</div>;
+};
 
-export default Todos
+export default Todos;
