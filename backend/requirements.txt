@@ -3,4 +3,5 @@ uvicorn
 pydantic
 bycrypt
 sqlalchemy
-passliby
+passlib
+python-jose

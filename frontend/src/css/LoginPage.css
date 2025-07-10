@@ -1,4 +1,4 @@
-body {
+body.login, body.signup {
   font-family: "Roboto", sans-serif;
   margin: 0;
   background-color: #333333;
@@ -10,6 +10,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  background-color: #333333;
+  color: black;
 }
 
 .login-box {
@@ -40,7 +44,7 @@ body {
 }
 
 .login-box input:hover {
-  outline: 1px solid black;  
+  outline: 1px solid black;
 }
 
 .login-box button {
@@ -49,4 +53,10 @@ body {
   font-weight: bold;
   font-size: 17px;
   cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
 }

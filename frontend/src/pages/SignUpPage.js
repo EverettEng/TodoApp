@@ -1,7 +1,7 @@
 // SignUpPage component handles user registration
 import "../css/LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const SignUpPage = () => {
   // State for username, password, confirm password, and error messages
@@ -10,6 +10,17 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Sign Up - Todo App";
+  }, []);
+
+  useEffect(() => {
+    document.body.className = "signup";
+    return () => {
+      document.body.className = "";
+    };
+  }, []);
 
   // Handles form submission and signup logic
   const handleSubmit = async (event_object) => {

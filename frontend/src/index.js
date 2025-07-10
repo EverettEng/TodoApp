@@ -9,17 +9,22 @@ import ProfilePage from "./pages/ProfilePage";
 import SignUpPage from "./pages/SignUpPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import InfoPage from "./pages/InfoPage";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 // Define all routes for the app
 const router = createBrowserRouter([
   {
     path: "/",
     element: <InfoPage />,
+    errorElement: <NotFoundPage />,
   },
   {
     path: "/home",
-    element: <TodoPage />,
-    errorElement: <NotFoundPage />,
+    element: (
+      <ProtectedRoute>
+        <TodoPage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/login",
@@ -28,6 +33,11 @@ const router = createBrowserRouter([
   {
     path: "/profile",
     element: <ProfilePage />,
+    element: (
+      <ProtectedRoute>
+        <TodoPage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/signup",

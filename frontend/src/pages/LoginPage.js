@@ -1,7 +1,8 @@
 // LoginPage component handles user login
 import { Link, useNavigate } from "react-router-dom";
 import "../css/LoginPage.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { isLoggedIn as checkAuth } from "../utils/auth"; // renamed import to avoid conflict
 
 const LoginPage = () => {
   // State for username, password, and error messages
@@ -9,6 +10,17 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Login - Todo App";
+  }, []);
+
+  useEffect(() => {
+    document.body.className = "login";
+    return () => {
+      document.body.className = "";
+    };
+  }, []);
 
   // Handles form submission and login logic
   const handleSubmit = async (e) => {
@@ -34,12 +46,33 @@ const LoginPage = () => {
       localStorage.setItem("loggedIn", "true");
       localStorage.setItem("username", data.username);
 
+      // Only store token if it exists in response
+      if (data.access_token) {
+        localStorage.setItem("token", data.access_token);
+      }
+
       navigate("/home");
     } catch (err) {
-      console.error(err);
-      setError("Something went wrong");
+      console.error("Login error:", err);
+      setError("Something went wrong. Please try again.");
     }
   };
+
+  if (checkAuth()) {
+    return (
+      <div className="login-container">
+        <div className="login-box">
+          <h3>
+            You are already logged in. If you wish to sign into another account,
+            please log out first.
+          </h3>
+          <p>
+            Go to <Link to={"/home"}>home</Link>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   // Render the login form
   return (
