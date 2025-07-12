@@ -19,3 +19,8 @@ export function isLoggedIn() {
   const token = getToken();
   return token && !isTokenExpired(token);
 }
+
+export function logout() {
+  localStorage.removeItem("token");
+  
+}

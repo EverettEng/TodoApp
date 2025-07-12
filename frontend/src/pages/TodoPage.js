@@ -1,7 +1,23 @@
-// TodoPage component displays the user's todo list page
+import Navbar from "../components/Navbar";
+import '../css/TodoPage.css';
+import { useEffect } from "react";
+
 const TodoPage = () => {
-  // Render the todo page
-  return <div>Todo Page</div>;
+
+  useEffect(() => {
+      document.body.className = "todo-page";
+      return () => {
+        document.body.className = "";
+      };
+  }, []);
+  
+  useEffect(() => {
+      document.title = "Todos";
+  }, []);
+  
+  return (<div>
+    <Navbar />
+  </div>);
 };
 
 export default TodoPage;

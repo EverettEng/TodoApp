@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
   },
   {
-    path: "/home",
+    path: "/todos",
     element: (
       <ProtectedRoute>
         <TodoPage />
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     element: <ProfilePage />,
     element: (
       <ProtectedRoute>
-        <TodoPage />
+        <ProfilePage />
       </ProtectedRoute>
     ),
   },

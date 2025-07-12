@@ -1,0 +1,21 @@
+.navbar ul {
+  padding: 0;
+  margin: 0; 
+  list-style-type: none;
+  font-family: "Roboto", sans-serif;
+  background-color: #333333;
+  color: #f2f2f2;
+  overflow: hidden;
+  display: flex; 
+}
+
+.navbar a {
+  display: block; 
+  padding: 15px;
+  color: #f2f2f2;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #f2f2f257;
+}

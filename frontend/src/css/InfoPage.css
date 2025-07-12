@@ -1,27 +1,44 @@
-.navbar ul{
-  padding: 0;
-  list-style-type: none;
-  font-family: "Roboto", sans-serif;
-  margin: 0;
-  background-color: #333333;
-  color: #f2f2f2;
-  overflow: hidden;
-}
-
-.navbar a{
-  float: left;
-  padding: 15px;
-  color: #f2f2f2;
-  text-decoration: none;
-}
-
-.navbar a:hover{
-  color:#efe817
-}
-
-body.info-page{
+body.info-page {
   font-family: "Roboto", sans-serif;
   margin: 0;
   background-color: #f2f2f2;
   color: black;
+}
+
+.info-text {
+  text-align: center;
+  margin-top: 50px;
+  padding: 0px;
+  font-size: 18px;
+  color: black;
+}
+
+.profile-links {
+  list-style-type: none;
+  padding-top: 20px;
+}
+
+.profile-links li {
+  list-style-type: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.profile-links li img {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.5em;
+}
+
+.profile-links h1{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 0px;
+}
+
+.profile-links a:visited{
+  color: blue;
 }

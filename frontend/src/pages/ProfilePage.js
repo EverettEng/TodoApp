@@ -1,7 +1,24 @@
-// ProfilePage component displays the user's profile page
+import Navbar from "../components/Navbar";
+import { useEffect } from "react";
+import "../css/ProfilePage.css";
+
 const ProfilePage = () => {
-  // Render the profile page
-  return <div>Profile Page</div>;
+  
+  useEffect(() => {
+      document.body.className = "profile-page";
+      return () => {
+        document.body.className = "";
+      };
+    }, []);
+  
+    useEffect(() => {
+      document.title = "Todos";
+    }, []);
+
+  return (<div>
+    <Navbar />
+    Profile Page
+  </div>);
 };
 
 export default ProfilePage;

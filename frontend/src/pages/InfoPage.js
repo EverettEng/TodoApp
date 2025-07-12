@@ -1,6 +1,8 @@
 import Navbar from "../components/Navbar";
 import "../css/InfoPage.css";
-import {useEffect} from "react";
+import { useEffect } from "react";
+import linkedin from "../images/LinkedIn_icon.png";
+import github from "../images/github_icon.png";
 
 const InfoPage = () => {
   useEffect(() => {
@@ -10,12 +12,45 @@ const InfoPage = () => {
     };
   }, []);
 
-    useEffect(() => {
-        document.title = "Todo App";
-    }, []);
+  useEffect(() => {
+    document.title = "Todo App";
+  }, []);
+
   return (
     <div>
       <Navbar />
+      <p className="info-text">
+        This is a simple Todo App built with React and Node.js. It allows users
+        to create, read, update, and delete todo items.
+        <br></br>
+        <br></br>
+        This is created by Everett Eng as a portfolio project and introduction
+        to full-stack development.
+      </p>
+
+      <ul class="profile-links">
+        <h1>Links</h1>
+        <li>
+          <img src={linkedin} alt="Linkedin" />
+          <a
+            href="https://www.linkedin.com/in/everett-eng/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Linkedin
+          </a>
+        </li>
+        <li>
+          <img src={github} alt="Github"></img>
+          <a
+            href="https://github.com/EverettEng"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
+          </a>
+        </li>
+      </ul>
     </div>
   );
 };

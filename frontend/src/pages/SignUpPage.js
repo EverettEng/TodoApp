@@ -2,6 +2,7 @@
 import "../css/LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
 
 const SignUpPage = () => {
   // State for username, password, confirm password, and error messages
@@ -12,7 +13,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Sign Up - Todo App";
+    document.title = "Sign Up";
   }, []);
 
   useEffect(() => {
@@ -53,51 +54,54 @@ const SignUpPage = () => {
 
   // Render the signup form
   return (
-    <div className="login-container">
-      <form className="login-box" onSubmit={handleSubmit}>
-        <h2>Sign Up</h2>
+    <div>
+      <Navbar />
+      <div className="login-container">
+        <form className="login-box" onSubmit={handleSubmit}>
+          <h2>Sign Up</h2>
 
-        <label>Username</label>
-        <input
-          placeholder="Your username (3-20 characters)"
-          required
-          minLength={3}
-          maxLength={20}
-          value={username}
-          onChange={(event_object) => setUsername(event_object.target.value)}
-        ></input>
+          <label>Username</label>
+          <input
+            placeholder="Your username (3-20 characters)"
+            required
+            minLength={3}
+            maxLength={20}
+            value={username}
+            onChange={(event_object) => setUsername(event_object.target.value)}
+          ></input>
 
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Enter your password (Minimum 8 characters)"
-          required
-          minLength={8}
-          value={password}
-          onChange={(event_object) => setPassword(event_object.target.value)}
-        ></input>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password (Minimum 8 characters)"
+            required
+            minLength={8}
+            value={password}
+            onChange={(event_object) => setPassword(event_object.target.value)}
+          ></input>
 
-        <label>Confirm Password</label>
-        <input
-          type="password"
-          placeholder="Confirm your password"
-          required
-          minLength={8}
-          value={confirmPassword}
-          onChange={(event_object) =>
-            setConfirmPassword(event_object.target.value)
-          }
-        ></input>
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Confirm your password"
+            required
+            minLength={8}
+            value={confirmPassword}
+            onChange={(event_object) =>
+              setConfirmPassword(event_object.target.value)
+            }
+          ></input>
 
-        {/* Display error message if signup fails */}
-        {error && <div className="error-message">{error}</div>}
+          {/* Display error message if signup fails */}
+          {error && <div className="error-message">{error}</div>}
 
-        <button type="submit">Sign Up</button>
+          <button type="submit">Sign Up</button>
 
-        <div className="signup-link">
-          Already have an account? <Link to="/login">Log In</Link>
-        </div>
-      </form>
+          <div className="signup-link">
+            Already have an account? <Link to="/login">Log In</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

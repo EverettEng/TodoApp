@@ -14,6 +14,6 @@ body.not-found {
   color: white;
 }
 
-a:visited{
+.not-found :visited{
   color: blue
 }

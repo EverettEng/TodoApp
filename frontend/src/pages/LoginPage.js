@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../css/LoginPage.css";
 import { useState, useEffect } from "react";
 import { isLoggedIn as checkAuth } from "../utils/auth"; // renamed import to avoid conflict
+import Navbar from "../components/Navbar";
 
 const LoginPage = () => {
   // State for username, password, and error messages
@@ -12,7 +13,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Login - Todo App";
+    document.title = "Login";
   }, []);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ const LoginPage = () => {
         localStorage.setItem("token", data.access_token);
       }
 
-      navigate("/home");
+      navigate("/todos");
     } catch (err) {
       console.error("Login error:", err);
       setError("Something went wrong. Please try again.");
@@ -60,15 +61,18 @@ const LoginPage = () => {
 
   if (checkAuth()) {
     return (
-      <div className="login-container">
-        <div className="login-box">
-          <h3>
-            You are already logged in. If you wish to sign into another account,
-            please log out first.
-          </h3>
-          <p>
-            Go to <Link to={"/home"}>home</Link>
-          </p>
+      <div>
+        <Navbar />
+        <div className="login-container">
+          <div className="login-box">
+            <h3>
+              You are already logged in. If you wish to sign into another
+              account, please log out first.
+            </h3>
+            <p>
+              Go to <Link to={"/todos"}>home</Link>
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -76,36 +80,39 @@ const LoginPage = () => {
 
   // Render the login form
   return (
-    <div className="login-container">
-      <form className="login-box" onSubmit={handleSubmit}>
-        <h2>Log In</h2>
+    <div>
+      <Navbar />
+      <div className="login-container">
+        <form className="login-box" onSubmit={handleSubmit}>
+          <h2>Log In</h2>
 
-        <label>Username</label>
-        <input
-          placeholder="Enter your username"
-          required
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        ></input>
+          <label>Username</label>
+          <input
+            placeholder="Enter your username"
+            required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          ></input>
 
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        ></input>
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          ></input>
 
-        {/* Display error message if login fails */}
-        {error && <div className="error-message">{error}</div>}
+          {/* Display error message if login fails */}
+          {error && <div className="error-message">{error}</div>}
 
-        <button type="submit">Log In</button>
+          <button type="submit">Log In</button>
 
-        <div className="signup-link">
-          Don't have an account? <Link to="/signup">Sign Up</Link>
-        </div>
-      </form>
+          <div className="signup-link">
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ const NotFoundPage = () => {
   }, []);
   
   useEffect(() => {
-    document.title = "404 Not Found - Todo App";
+    document.title = "404 Not Found";
   }, []);
 
   return (
