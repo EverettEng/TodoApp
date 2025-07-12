@@ -28,6 +28,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 # Load environment variables from .env file
 load_dotenv()
+# This key is used to sign the JWT tokens, its in an env file in the format SECRET_KEY="your_secret_key"
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 *24 * 14  # 14 days expiration
