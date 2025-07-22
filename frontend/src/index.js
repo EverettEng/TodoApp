@@ -10,6 +10,7 @@ import SignUpPage from "./pages/SignUpPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import InfoPage from "./pages/InfoPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import './css/Global.css';
 
 // Define all routes for the app
 const router = createBrowserRouter([
@@ -32,7 +33,6 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile",
-    element: <ProfilePage />,
     element: (
       <ProtectedRoute>
         <ProfilePage />

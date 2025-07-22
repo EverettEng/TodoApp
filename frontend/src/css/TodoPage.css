@@ -1,6 +1,320 @@
-body.todo-page{
+/* Body and Container styles (keep as is, or adjust as needed) */
+body.todo-page {
   font-family: "Roboto", sans-serif;
   margin: 0;
   background-color: #f2f2f2;
   color: black;
+}
+
+.todo-container {
+  width: 100%;
+  max-width: 800px; /* Match the form and todo items max-width */
+  margin: 0 auto;
+  padding-top: 10px;
+  text-align: center;
+  height: 100%;
+  padding-bottom: 125px;
+}
+
+/* Todo Form styles - Updated to match todo item width */
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #333333;
+  width: 100%; /* Changed to match todo items */
+  max-width: 800px; /* Added max-width to prevent it from getting too wide */
+  padding: 15px; /* Changed from 15px 20px to match todo items */
+  border-radius: 15px;
+  box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.todo-container h2 {
+  margin: 0px;
+  text-align: left;
+  color: #333333; /* Assuming you want this to be visible */
+}
+
+.title-input,
+.description-input,
+.due-date-input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f2f2f2;
+  color: black;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif; /* Ensures padding doesn't add to width */
+}
+
+.title-input {
+  height: 35px; /* Fixed height for title input */
+  margin-bottom: 10px;
+}
+
+.description-input {
+  height: 100px;
+  margin-bottom: 10px; /* Space after description input */
+  resize: vertical; /* Allow vertical resizing for textarea */
+}
+
+.todo-form textarea {
+  font-family: "Roboto", sans-serif;
+}
+
+.due-date-label {
+  color: #f2f2f2;
+}
+
+.due-date-container {
+  display: flex;
+  align-items: flex-end; /* Aligns items at the bottom within this flex container */
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0;
+  gap: 10px;
+  flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+}
+
+.due-date-left {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Allows this to grow and shrink */
+  min-width: 150px; /* Ensures it doesn't get too small */
+}
+
+.due-date-label {
+  color: #f2f2f2;
+  margin-bottom: 3px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.submit-button {
+  padding: 10px 16px;
+  background-color: #f2f2f2;
+  color: #333333;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0; /* Prevents shrinking */
+  height: 40px; /* Match height with input/label row if possible */
+  margin-left: 15px;
+}
+
+.submit-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* ========================================================= */
+/* CORE CHANGES FOR TODO ITEM LAYOUT */
+/* ========================================================= */
+
+.todo-item {
+  background-color: #333333;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex; /* Make this the flex container */
+  align-items: flex-start; /* Aligns items to the top of the container */
+  color: #f2f2f2;
+  margin-bottom: 15px; /* Spacing between todo items */
+  gap: 20px; /* Gap between the main sections (content, actions) */
+  width: 100%; /* Ensure full width */
+  max-width: 800px; /* Match form max-width */
+  box-sizing: border-box;
+}
+
+.todo-description-container {
+  /* This will hold the title, description, and now the details */
+  flex-grow: 1; /* Allows this section to take up available space */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Allows flex item to shrink below its content size */
+  max-width: calc(
+    100% - 160px
+  ); /* Reserve space for buttons (140px + 20px gap) */
+}
+
+.todo-item h3 {
+  padding: 0;
+  margin: 0 0 5px 0;
+  font-size: 30px;
+  word-wrap: break-word; /* Prevents very long words from overflowing */
+  overflow-wrap: break-word;
+  white-space: normal; /* Ensure normal wrapping behavior */
+}
+
+.todo-description {
+  padding: 0;
+  margin: 0 0 10px 0; /* Add bottom margin to separate from details */
+  font-size: 1em;
+  color: #f2f2f2; /* Default description color */
+  word-wrap: break-word; /* Prevents very long words from overflowing */
+  overflow-wrap: break-word;
+  white-space: normal; /* Ensure normal wrapping behavior */
+}
+
+.todo-details {
+  display: flex; /* Makes it a flex container */
+  flex-direction: column; /* Stack date and status vertically */
+  gap: 5px; /* Small gap between date and status */
+  margin-top: 0; /* Removed top margin since it's now in the description container */
+  align-self: flex-start; /* Align to the left */
+}
+
+.todo-due-date {
+  /* Specific class for due date paragraph */
+  padding: 0;
+  margin: 0;
+  font-size: 0.9em;
+  color: #aaa; /* Lighter color for due date */
+}
+
+.todo-actions {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px; /* Space between buttons */
+  flex-shrink: 0; /* Prevents buttons from shrinking */
+  margin-left: auto; /* Push buttons to the right */
+  width: 140px; /* Increased width to accommodate "Toggle Complete" text */
+}
+
+.todo-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #555;
+  color: white;
+  font-size: 0.85em; /* Slightly smaller font to fit better */
+  white-space: nowrap; /* Prevents button text from wrapping */
+  text-align: center;
+  min-height: 32px; /* Ensure consistent button height */
+}
+
+.todo-actions button:hover {
+  background-color: #777;
+}
+
+/* ========================================================= */
+/* EDIT FORM STYLES - Match create form styling */
+/* ========================================================= */
+
+.todo-edit-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.todo-edit-title,
+.todo-edit-description,
+.todo-edit-date {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f2f2f2;
+  color: black;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.todo-edit-title {
+  height: 35px;
+  font-size: 16px;
+}
+
+.todo-edit-description {
+  height: 80px;
+  resize: vertical;
+  font-size: 14px;
+}
+
+.todo-edit-date {
+  height: 35px;
+}
+
+.todo-edit-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.todo-edit-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+.todo-edit-actions .save-button {
+  background-color: #f2f2f2;
+  color: #333333;
+}
+
+.todo-edit-actions .save-button:hover {
+  background-color: #e0e0e0;
+}
+
+.todo-edit-actions .cancel-button {
+  background-color: #666;
+  color: white;
+}
+
+.todo-edit-actions .cancel-button:hover {
+  background-color: #888;
+}
+
+/* Renamed status classes for clarity and consistency */
+.todo-status-incomplete {
+  color: rgb(244, 239, 96); /* Yellowish for incomplete */
+  font-weight: bold; /* Added for emphasis */
+  font-size: 0.9em; /* Consistent with due date */
+  padding: 0;
+  margin: 0; /* Remove default paragraph margins */
+}
+
+.todo-status-completed {
+  color: rgb(113, 240, 87); /* Green for completed */
+  font-weight: bold; /* Added for emphasis */
+  font-size: 0.9em; /* Consistent with due date */
+  padding: 0;
+  margin: 0; /* Remove default paragraph margins */
+}
+
+/* Existing todo-item-completed for title (strike-through) */
+.todo-item-completed {
+  text-decoration: line-through;
+  color: rgb(113, 240, 87);
+}
+
+.todo-item-incomplete {
+  /* You might want a specific color for incomplete title if it differs from default h3 */
+  color: rgb(244, 239, 96); /* Example: match incomplete status color */
+}
+
+.todo-status-overdue {
+  color: rgb(238, 63, 63);
+}
+
+.edit-todo-title,
+.edit-todo-description,
+.edit-todo-date{
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f2f2f2;
+  color: black;
+  box-sizing: border-box;
+  margin-bottom: 7px; 
+  font-family: "Roboto", sans-serif;
 }

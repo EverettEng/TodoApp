@@ -46,6 +46,8 @@ const LoginPage = () => {
       // Store login state and redirect
       localStorage.setItem("loggedIn", "true");
       localStorage.setItem("username", data.username);
+      localStorage.setItem("userID", data.userID);
+      
 
       // Only store token if it exists in response
       if (data.access_token) {
@@ -70,7 +72,10 @@ const LoginPage = () => {
               account, please log out first.
             </h3>
             <p>
-              Go to <Link to={"/todos"}>home</Link>
+              Go to{" "}
+              <Link className="link-to-todos" to={"/todos"}>
+                todos
+              </Link>
             </p>
           </div>
         </div>

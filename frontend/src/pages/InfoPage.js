@@ -28,7 +28,7 @@ const InfoPage = () => {
         to full-stack development.
       </p>
 
-      <ul class="profile-links">
+      <ul className="profile-links">
         <h1>Links</h1>
         <li>
           <img src={linkedin} alt="Linkedin" />
