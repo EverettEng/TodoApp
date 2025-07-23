@@ -27,6 +27,27 @@ const InfoPage = () => {
         This is created by Everett Eng as a portfolio project and introduction
         to full-stack development.
       </p>
+      <h1 style={{ textAlign: "center", paddingTop: "10px" }}>
+        Skills used when creating this app
+      </h1>
+      <ul
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "18px",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <li>React.js</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>FastAPI</li>
+        <li>SQLite</li>
+        <li>SQLAlchemy</li>
+        <li>Pydantic</li>
+      </ul>
 
       <ul className="profile-links">
         <h1>Links</h1>

@@ -73,7 +73,7 @@ const LoginPage = () => {
             </h3>
             <p>
               Go to{" "}
-              <Link className="link-to-todos" to={"/todos"}>
+              <Link className="link-to-todos" to="/todos">
                 todos
               </Link>
             </p>

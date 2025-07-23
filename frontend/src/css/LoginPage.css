@@ -59,5 +59,8 @@ body.login, body.signup {
   color:blue;
 }
 
+.signup-link a:visited{
+  color: blue;
+}
 
 
