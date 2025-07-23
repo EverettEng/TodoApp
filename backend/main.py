@@ -299,17 +299,3 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: User 
     db.delete(db_todo)
     db.commit()
 
-@app.delete("/delete_user/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_user(user_id: int, data: PasswordCheck, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-
-    if user.id != current_user.id:
-        raise HTTPException(status_code=403, detail="Not authorized to delete this user")
-    
-    if not pwd_context.verify(data.password, user.hashed_password):
-        raise HTTPException(status_code=401, detail="Incorrect password")
-    
-    db.delete(user)
-    db.commit()

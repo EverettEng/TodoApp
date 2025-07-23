@@ -19,6 +19,11 @@ const Navbar = () => {
         <li>
           <Login />
         </li>
+        {localStorage.getItem("loggedIn") === "true" ? null : (
+          <li>
+            <Link to="/signup" >Sign Up</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );
