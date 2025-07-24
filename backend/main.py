@@ -58,14 +58,9 @@ from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from schemas import ToDoOut, ToDoCreate, ToDoUpdate, UserSignup, PasswordCheck
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 app = FastAPI()
-
-app.mount(
-    "/", 
-    StaticFiles(directory=os.path.join(os.path.dirname(__file__), "build"), html=True), 
-    name="static"
-)
 
 # Load environment variables from .env file
 load_dotenv()
@@ -73,9 +68,6 @@ load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = "HS256"  # JWT signing algorithm
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 14  # 14 days expiration for access tokens
-
-# Initialize FastAPI app
-app = FastAPI()
 
 # Create the tables in the database if they don't exist
 Base.metadata.create_all(bind=engine)
@@ -86,7 +78,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 # Enable CORS for frontend-backend communication
 app.add_middleware(
   CORSMiddleware,
-  allow_origins=["http://localhost:3000"],  # or "*" for testing
+  allow_origins=["http://localhost:3000", "https://todoapp-8zlz.onrender.com"],
   allow_credentials=True,
   allow_methods=["*"],
   allow_headers=["*"],
@@ -308,3 +300,8 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: User 
     db.delete(db_todo)
     db.commit()
 
+app.mount("/static", StaticFiles(directory=os.path.join("build", "static")), name="static")
+
+@app.get("/{full_path:path}")
+async def serve_react_app():
+    return FileResponse(os.path.join("build", "index.html"))
