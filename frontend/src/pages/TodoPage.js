@@ -54,7 +54,7 @@ const TodoPage = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await fetch(`${API_URL}/todos`, {
+        const response = await fetch(`${API_URL}/todos/`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${getToken()}`,
