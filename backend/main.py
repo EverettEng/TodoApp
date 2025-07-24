@@ -57,6 +57,15 @@ import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from schemas import ToDoOut, ToDoCreate, ToDoUpdate, UserSignup, PasswordCheck
+from fastapi.staticfiles import StaticFiles
+
+app = FastAPI()
+
+app.mount(
+    "/", 
+    StaticFiles(directory=os.path.join(os.path.dirname(__file__), "build"), html=True), 
+    name="static"
+)
 
 # Load environment variables from .env file
 load_dotenv()
