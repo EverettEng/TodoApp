@@ -4,6 +4,7 @@ import "../css/LoginPage.css";
 import { useState, useEffect } from "react";
 import { isLoggedIn as checkAuth } from "../utils/auth"; // renamed import to avoid conflict
 import Navbar from "../components/Navbar";
+import { API_URL } from "../config";
 
 const LoginPage = () => {
   // State for username, password, and error messages
@@ -30,7 +31,7 @@ const LoginPage = () => {
 
     try {
       // Send login request to backend
-      const response = await fetch("http://localhost:8000/login", {
+      const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

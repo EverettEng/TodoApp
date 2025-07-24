@@ -3,6 +3,7 @@ import "../css/LoginPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { API_URL } from "../config";
 
 const SignUpPage = () => {
   // State for username, password, confirm password, and error messages
@@ -33,7 +34,7 @@ const SignUpPage = () => {
     }
     try {
       // Send signup request to backend
-      const response = await fetch("http://localhost:8000/signup", {
+      const response = await fetch(`${API_URL}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

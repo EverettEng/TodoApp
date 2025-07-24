@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import "../css/TodoPage.css";
 import { useEffect, useState } from "react";
 import { getToken } from "../utils/auth";
+import { API_URL } from "../config";
 
 const TodoPage = () => {
   const [form, setForm] = useState({
@@ -53,7 +54,7 @@ const TodoPage = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await fetch("http://localhost:8000/todos/", {
+        const response = await fetch(`${API_URL}/todos`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${getToken()}`,
@@ -105,7 +106,7 @@ const TodoPage = () => {
 
     try {
       // Send login request to backend
-      const response = await fetch("http://localhost:8000/create_todo", {
+      const response = await fetch(`${API_URL}/create_todo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -127,7 +128,7 @@ const TodoPage = () => {
   const handleToggleComplete = async (todoId, status) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/update_todo/${todoId}`,
+        `${API_URL}/update_todo/${todoId}`,
         {
           method: "PUT",
           headers: {
@@ -167,7 +168,7 @@ const TodoPage = () => {
   const handleDeleteTodo = async (todoID) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/delete_todo/${todoID}`,
+        `${API_URL}/delete_todo/${todoID}`,
         {
           method: "DELETE",
           headers: {
@@ -221,7 +222,7 @@ const TodoPage = () => {
         due_date: new Date(editingForm.dueDate).toISOString(),
       };
       const response = await fetch(
-        `http://localhost:8000/update_todo/${todoID}`,
+        `${API_URL}update_todo/${todoID}`,
         {
           method: "PUT",
           headers: {

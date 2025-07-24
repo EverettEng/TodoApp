@@ -5,6 +5,8 @@ import linkedin from "../images/LinkedIn_icon.png";
 import github from "../images/github_icon.png";
 
 const InfoPage = () => {
+
+  
   useEffect(() => {
     document.body.className = "info-page";
     return () => {
