@@ -304,4 +304,4 @@ app.mount("/", StaticFiles(directory="build", html=True), name="static")
 
 @app.get("/{full_path:path}")
 async def serve_react_app():
-    return FileResponse(os.path.join("build", "index.html"))
+    return FileResponse(os.path.join(os.path.dirname(__file__), "build", "index.html"))
