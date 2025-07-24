@@ -28,7 +28,7 @@ const InfoPage = () => {
         to full-stack development.
       </p>
       <h1 style={{ textAlign: "center", paddingTop: "10px" }}>
-        Skills used when creating this app
+        Skills used when creating this app:
       </h1>
       <ul
         style={{
