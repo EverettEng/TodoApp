@@ -300,7 +300,7 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: User 
     db.delete(db_todo)
     db.commit()
 
-app.mount("/static", StaticFiles(directory=os.path.join("build", "static")), name="static")
+app.mount("/", StaticFiles(directory="build", html=True), name="static")
 
 @app.get("/{full_path:path}")
 async def serve_react_app():

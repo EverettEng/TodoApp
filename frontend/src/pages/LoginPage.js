@@ -31,6 +31,7 @@ const LoginPage = () => {
 
     try {
       // Send login request to backend
+      console.log("Login fetch URL:", `${API_URL}/login`);
       const response = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
