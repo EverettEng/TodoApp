@@ -1,4 +1,5 @@
 import { jwtDecode } from "jwt-decode";
+import { API_URL } from "../config";
 
 export function getToken() {
   return localStorage.getItem("token");
@@ -30,7 +31,7 @@ export async function isValidToken() {
 
   try {
     // Make a simple API call to verify the token is still valid
-    const response = await fetch("http://localhost:8000/todos/", {
+    const response = await fetch(`${API_URL}/todos`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
