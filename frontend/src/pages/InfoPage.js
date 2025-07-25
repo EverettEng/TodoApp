@@ -74,6 +74,7 @@ const InfoPage = () => {
           </a>
         </li>
       </ul>
+      <p className="info-text">Ths app is deployed using Render's free tier.</p>
     </div>
   );
 };
