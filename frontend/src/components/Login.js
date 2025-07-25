@@ -26,22 +26,28 @@ const Login = () => {
     };
   }, []);
 
-  const status = loggedIn ? "Logout" : "Login";
-
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault(); // Prevent Link navigation
     logout();
     setLoggedIn(false);
     navigate("/login");
+  };
+
+  const handleLoginClick = (e) => {
+    // Let the Link handle navigation for login
+    if (loggedIn) {
+      handleLogout(e);
+    }
   };
 
   return (
     <div>
       <Link
         className="login-button"
-        to={"/login"}
-        onClick={loggedIn ? handleLogout : null}
+        to={loggedIn ? "#" : "/login"} // Don't navigate when logged in
+        onClick={handleLoginClick}
       >
-        {status}
+        {loggedIn ? "Logout" : "Login"}
       </Link>
     </div>
   );
