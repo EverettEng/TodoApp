@@ -77,6 +77,7 @@ const SignUpPage = () => {
             placeholder="Enter your password (Minimum 8 characters)"
             required
             minLength={8}
+            maxLength={72}
             value={password}
             onChange={(event_object) => setPassword(event_object.target.value)}
           ></input>
@@ -87,6 +88,7 @@ const SignUpPage = () => {
             placeholder="Confirm your password"
             required
             minLength={8}
+            maxLength={72}
             value={confirmPassword}
             onChange={(event_object) =>
               setConfirmPassword(event_object.target.value)
