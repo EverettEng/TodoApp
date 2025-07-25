@@ -444,7 +444,6 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: User 
 # Static File Serving for React Frontend
 
 # Mount the React build directory to serve static assets (CSS, JS, images)
-app.mount("/api/static", StaticFiles(directory="/build/static"), name="static")
 build_dir = Path(__file__).parent / "build"
 static_dir = build_dir / "static"
 index_file = build_dir / "index.html"
