@@ -54,7 +54,7 @@ const TodoPage = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await fetch(`${API_URL}/todos`, {
+        const response = await fetch(`${API_URL}/api/todos`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${getToken()}`,
@@ -106,7 +106,7 @@ const TodoPage = () => {
 
     try {
       // Send login request to backend
-      const response = await fetch(`${API_URL}/create_todo`, {
+      const response = await fetch(`${API_URL}/api/create_todo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -127,17 +127,14 @@ const TodoPage = () => {
 
   const handleToggleComplete = async (todoId, status) => {
     try {
-      const response = await fetch(
-        `${API_URL}/update_todo/${todoId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${getToken()}`,
-          },
-          body: JSON.stringify({ completed: !status }),
-        }
-      );
+      const response = await fetch(`${API_URL}/api/update_todo/${todoId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getToken()}`,
+        },
+        body: JSON.stringify({ completed: !status }),
+      });
 
       if (!response.ok) throw new Error("Failed to update todo");
 
@@ -167,15 +164,12 @@ const TodoPage = () => {
 
   const handleDeleteTodo = async (todoID) => {
     try {
-      const response = await fetch(
-        `${API_URL}/delete_todo/${todoID}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${getToken()}`,
-          },
-        }
-      );
+      const response = await fetch(`${API_URL}/api/delete_todo/${todoID}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
       if (!response.ok) throw new Error("Failed to delete todo");
 
       /*
@@ -221,17 +215,14 @@ const TodoPage = () => {
         description: editingForm.description,
         due_date: new Date(editingForm.dueDate).toISOString(),
       };
-      const response = await fetch(
-        `${API_URL}update_todo/${todoID}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Bearer ${getToken()}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const response = await fetch(`${API_URL}/api/update_todo/${todoID}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
       if (!response.ok) throw new Error("Failed to update todo");
 
       setEditingTodo(null);

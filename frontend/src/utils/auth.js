@@ -31,7 +31,7 @@ export async function isValidToken() {
 
   try {
     // Make a simple API call to verify the token is still valid
-    const response = await fetch(`${API_URL}/todos`, {
+    const response = await fetch(`${API_URL}/api/todos`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,

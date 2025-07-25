@@ -34,7 +34,7 @@ const SignUpPage = () => {
     }
     try {
       // Send signup request to backend
-      const response = await fetch(`${API_URL}/signup`, {
+      const response = await fetch(`${API_URL}/api/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -148,7 +148,7 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 # Signup endpoint
-@app.post("/signup")
+@app.post("/api/signup")
 def signup(user: UserSignup, db: Session = Depends(get_db)):
     """
     Registers a new user account with username and password.
@@ -193,7 +193,7 @@ def signup(user: UserSignup, db: Session = Depends(get_db)):
     return {"id": db_user.id, "username": db_user.username}
 
 # Login endpoint
-@app.post("/login")
+@app.post("/api/login")
 def login(user: UserSignup, db: Session = Depends(get_db)):
     """
     Authenticates a user and returns a JWT access token if credentials are valid.
@@ -284,7 +284,7 @@ def get_current_user(token: str = Header(..., alias="Authorization"), db: Sessio
 # CRUD Endpoints for Todo Management
 
 # Endpoint to create a new todo (requires authentication)
-@app.post("/create_todo", response_model=ToDoOut, status_code=status.HTTP_201_CREATED)
+@app.post("/api/create_todo", response_model=ToDoOut, status_code=status.HTTP_201_CREATED)
 def create_todo(todo: ToDoCreate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """
     Creates a new todo item associated with the authenticated user.
@@ -324,7 +324,7 @@ def create_todo(todo: ToDoCreate, db: Session = Depends(get_db), current_user: U
     db.refresh(db_todo)  # Refresh to get auto-generated ID and timestamps
     return db_todo
 
-@app.get('/todos', response_model=List[ToDoOut])
+@app.get('/api/todos', response_model=List[ToDoOut])
 def get_todos(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """
     Retrieves all todo items belonging to the authenticated user.
@@ -352,7 +352,7 @@ def get_todos(db: Session = Depends(get_db), current_user: User = Depends(get_cu
     """
     return db.query(Todo).filter(Todo.owner_id == current_user.id).all()
 
-@app.put('/update_todo/{todo_id}', response_model=ToDoOut)
+@app.put('/api/update_todo/{todo_id}', response_model=ToDoOut)
 def update_todo(todo_id: int, todo_update: ToDoUpdate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """
     Updates an existing todo item owned by the authenticated user.
@@ -400,7 +400,7 @@ def update_todo(todo_id: int, todo_update: ToDoUpdate, db: Session = Depends(get
     db.refresh(db_todo)  # Refresh to get updated timestamp
     return db_todo
 
-@app.delete('/delete_todo/{todo_id}', status_code=status.HTTP_204_NO_CONTENT)
+@app.delete('/api/delete_todo/{todo_id}', status_code=status.HTTP_204_NO_CONTENT)
 def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """
     Deletes a todo item owned by the authenticated user.
@@ -443,7 +443,7 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: User 
 # Static File Serving for React Frontend
 
 # Mount the React build directory to serve static assets (CSS, JS, images)
-app.mount("/", StaticFiles(directory="build", html=True), name="static")
+app.mount("/api/static", StaticFiles(directory="backend/static"), name="static")
 
 @app.get("/{full_path:path}")
 async def serve_react_app():
@@ -471,4 +471,4 @@ async def serve_react_app():
         This route has the lowest priority and only matches routes that haven't
         been handled by the specific API endpoints defined earlier in the file.
     """
-    return FileResponse(os.path.join(os.path.dirname(__file__), "build", "index.html"))
+    return FileResponse("backend/static/index.html")
