@@ -63,6 +63,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from schemas import ToDoOut, ToDoCreate, ToDoUpdate, UserSignup, PasswordCheck
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from sqlalchemy.exec import IntegrityError
 
 app = FastAPI()
 
@@ -177,22 +178,19 @@ def signup(user: UserSignup, db: Session = Depends(get_db)):
         4. Create new User record in database
         5. Return user information (password excluded for security)
     """
+    existing_user = db.query(User).filter(User.username == user.username).first()
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Username already exists")
+    hashed_password = hash_password(user.password)
+    db_user = User(username=user.username, hashed_password=hashed_password)
+    db.add(db_user)
     try:
-        existing_user = db.query(User).filter(User.username == user.username).first()
-        if existing_user:
-            raise HTTPException(status_code=400, detail="Username already exists")
-
-        hashed_password = hash_password(user.password)
-        db_user = User(username=user.username, hashed_password=hashed_password)
-        db.add(db_user)
         db.commit()
         db.refresh(db_user)
-
-        return {"id": db_user.id, "username": db_user.username}
-
-    except Exception as e:
-        print(f"Signup error: {e}")  # Will show up in Render logs
-        raise HTTPException(status_code=500, detail="Internal Server Error")
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Username already exists")
+    return {"id": db_user.id, "username": db_user.username}
 
 # Login endpoint
 @app.post("/login")
