@@ -63,7 +63,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from schemas import ToDoOut, ToDoCreate, ToDoUpdate, UserSignup, PasswordCheck
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from sqlalchemy.exec import IntegrityError
+from sqlalchemy.exc import IntegrityError
 
 app = FastAPI()
 
