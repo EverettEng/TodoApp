@@ -19,8 +19,8 @@ Full-stack app created by Everett Eng as an introduction to full stack developme
 - Profile
   - View number of complete, incomplete, and overdue todos
 
-## Stack used
+## Stack Used
 **Frontend**: React.js  
 **Backend**: FastAPI  
 **ORM**: SQLAlchemy  
-**Database**: SQLite  
+**Database**: PostgreSQL
