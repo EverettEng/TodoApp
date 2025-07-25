@@ -443,7 +443,7 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: User 
 # Static File Serving for React Frontend
 
 # Mount the React build directory to serve static assets (CSS, JS, images)
-app.mount("/api/static", StaticFiles(directory="backend/build/static"), name="static")
+app.mount("/api/static", StaticFiles(directory="/build/static"), name="static")
 
 @app.get("/{full_path:path}")
 async def serve_react_app():
@@ -471,4 +471,4 @@ async def serve_react_app():
         This route has the lowest priority and only matches routes that haven't
         been handled by the specific API endpoints defined earlier in the file.
     """
-    return FileResponse("backend/build/index.html")
+    return FileResponse("/build/index.html")
