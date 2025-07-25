@@ -106,6 +106,8 @@ const TodoPage = () => {
 
     try {
       // Send login request to backend
+      console.log("Token being sent:", getToken());
+      console.log("Payload being sent:", payload);
       const response = await fetch(`${API_URL}/api/create_todo`, {
         method: "POST",
         headers: {
