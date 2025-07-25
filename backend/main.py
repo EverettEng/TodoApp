@@ -324,7 +324,7 @@ def create_todo(todo: ToDoCreate, db: Session = Depends(get_db), current_user: U
     db.refresh(db_todo)  # Refresh to get auto-generated ID and timestamps
     return db_todo
 
-@app.get('/todos/', response_model=List[ToDoOut])
+@app.get('/todos', response_model=List[ToDoOut])
 def get_todos(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     """
     Retrieves all todo items belonging to the authenticated user.
