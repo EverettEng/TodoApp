@@ -64,6 +64,7 @@ from schemas import ToDoOut, ToDoCreate, ToDoUpdate, UserSignup, PasswordCheck
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from sqlalchemy.exc import IntegrityError
+from pathlib import Path
 
 app = FastAPI()
 
@@ -444,6 +445,13 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db), current_user: User 
 
 # Mount the React build directory to serve static assets (CSS, JS, images)
 app.mount("/api/static", StaticFiles(directory="/build/static"), name="static")
+build_dir = Path(__file__).parent / "build"
+static_dir = build_dir / "static"
+index_file = build_dir / "index.html"
+
+if static_dir.exists():
+    app.mount("/static", StaticFiles(directory=str(static_dir)), name="static")
+
 
 @app.get("/{full_path:path}")
 async def serve_react_app():
@@ -471,4 +479,7 @@ async def serve_react_app():
         This route has the lowest priority and only matches routes that haven't
         been handled by the specific API endpoints defined earlier in the file.
     """
-    return FileResponse("/build/index.html")
+    if index_file.exists():
+        return FileResponse(str(index_file))
+    else:
+        return {"error": "App not found"}
