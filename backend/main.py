@@ -351,8 +351,18 @@ def get_todos(db: Session = Depends(get_db), current_user: User = Depends(get_cu
         - User can only see their own todos due to owner_id filter
         - Authentication required via get_current_user dependency
     """
-    # return db.query(Todo).filter(Todo.owner_id == current_user.id).all()
-    return {"message": f"Hello, {current_user.username}"}
+    todos = db.query(Todo).filter(Todo.owner_id == current_user.id).all()
+    return [
+        {
+            "id": todo.id,
+            "title": todo.title,
+            "description": todo.description,
+            "due_date": todo.due_date.isoformat() if todo.due_date else None,
+            "completed": todo.completed,
+            "owner_id": todo.owner_id,
+        }
+        for todo in todos
+    ]
 
 @app.put('/api/update_todo/{todo_id}', response_model=ToDoOut)
 def update_todo(todo_id: int, todo_update: ToDoUpdate, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
