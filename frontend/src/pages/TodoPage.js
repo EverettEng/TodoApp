@@ -337,7 +337,7 @@ const TodoPage = () => {
                           </p>
                           <p
                             className={
-                              new Date(todo.dueDate) < new Date() &&
+                              new Date(todo.due_date) < new Date() &&
                               !todo.completed
                                 ? "todo-status-overdue"
                                 : todo.completed
