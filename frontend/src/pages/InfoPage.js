@@ -46,7 +46,7 @@ const InfoPage = () => {
         <li>CSS</li>
         <li>JavaScript</li>
         <li>FastAPI</li>
-        <li>SQLite</li>
+        <li>PostgreSQL</li>
         <li>SQLAlchemy</li>
         <li>Pydantic</li>
       </ul>
@@ -74,7 +74,8 @@ const InfoPage = () => {
           </a>
         </li>
       </ul>
-      <p className="info-text">Ths app is deployed using Render's free tier.</p>
+      <p className="info-text">Ths app is deployed using Render's free tier. Since the free database does not have much storage,
+        please do not create an excess amount of accounts and todos. Thanks!</p>
     </div>
   );
 };

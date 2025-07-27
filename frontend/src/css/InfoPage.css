@@ -9,6 +9,8 @@ body.info-page {
   text-align: center;
   margin-top: 50px;
   padding: 0px;
+  margin-left: 15%;
+  margin-right: 15%;
   font-size: 18px;
   color: black;
 }
