@@ -21,9 +21,6 @@ const TodoPage = () => {
     create: "",
     edit: "",
   });
-  const [completedTodo, setCompletedTodo] = useState(0);
-  const [incompleteTodo, setIncompleteTodo] = useState(0);
-  const [overdueTodo, setOverdueTodo] = useState(0);
 
   useEffect(() => {
     let completed = 0;
@@ -41,10 +38,6 @@ const TodoPage = () => {
         incomplete++;
       }
     }
-
-    setCompletedTodo(completed);
-    setIncompleteTodo(incomplete);
-    setOverdueTodo(overdue);
 
     localStorage.setItem("numCompletedTodos", completed);
     localStorage.setItem("numIncompleteTodos", incomplete);

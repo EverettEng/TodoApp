@@ -1,17 +1,10 @@
-.not-found {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-  text-align: center;
-}
+
 
 body.not-found {
   font-family: "Roboto", sans-serif;
   margin: 0;
   background-color: #333333;
-  color: white;
+  color: #333333;
 }
 
 .not-found :visited{
