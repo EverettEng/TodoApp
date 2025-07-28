@@ -36,10 +36,10 @@ const SignUpPage = () => {
     }
 
     // Validate password contains only allowed characters
-    const passwordRegex = /^[a-zA-Z0-9@#$%^&*()_\-+={}|\\:;"'<>,./?]+$/;
+    const passwordRegex = /^[a-zA-Z0-9@#$%^&*()_\-+={}|\\:;"'<>,./?!]+$/;
     if (!passwordRegex.test(password)) {
       setError(
-        "Password can only contain: letters, numbers, and these symbols: @ # $ % ^ & * ( ) _ - + = { } | \\ : ; \" ' < > , . / ?"
+        "Password can only contain: letters, numbers, and these symbols: @ # $ % ^ & * ( ) _ - + = { } | \\ : ; \" ' < > , . / ? !"
       );
       return;
     }
