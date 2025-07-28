@@ -538,8 +538,10 @@ const TodoPage = () => {
                               minute: "2-digit",
                             })}{" "}
                             (In{" "}
+                            {/* Sets both days to midnight to ensure accurate date calculation*/}
                             {Math.floor(
-                              (new Date(todo.due_date) - new Date()) /
+                              (new Date(todo.due_date).setHours(0, 0, 0, 0) -
+                                new Date().setHours(0, 0, 0, 0)) /
                                 (1000 * 60 * 60 * 24)
                             )}{" "}
                             days.)
