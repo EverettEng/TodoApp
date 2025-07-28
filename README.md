@@ -6,21 +6,23 @@ Please note: since it's on the free tier, the server goes to sleep when not in u
   
 ## App Pages
 - Sign Up
-  - Create new accounts
-  - Usernames have minimum of 3 characters and a maximum of 20
-  - Passwords have a minimum length of 8 characters and a max of 72 so that bcrypt hashes all of it
+  - Create new accounts.
+  - Usernames have minimum of 3 characters and a maximum of 20.
+  - Passwords have a minimum length of 8 characters and a max of 72.
+  - Passwords are hashed using bcrypt.
 - Log In
+  - Use JWTs to allow for user authentication.
 - Home Page 
-  - Brief description of the app and links to Github and Linkedin
+  - Brief description of the app and links to Github and Linkedin.
 - Todos page 
-  - Create todos 
-  - View todos
+  - Create todos .
+  - View todos.
   - Todos are sorted first by completion (Complete, Incomplete, Overdue), then by due date.
-  - Edit and delete todos
-  - Toggle completion of todos
+  - Edit and delete todos.
+  - Toggle completion of todos.
 - Profile
-  - View number of complete, incomplete, and overdue todos
-  - Permanently delete account
+  - View number of complete, incomplete, and overdue todos.
+  - Permanently delete account after confirming delete by typing password.
 
 ## Stack Used
 **Frontend**: React.js  
