@@ -1,7 +1,7 @@
 # Todo App
 
 Full-stack app created by Everett Eng as an introduction to full stack development using FastAPI and React.js.  
-The app is deployed using Render's free tier at https://todoapp-8zlz.onrender.com.
+The app is deployed using Render's free tier at https://todoapp-8zlz.onrender.com.  
 Please note: since it's on the free tier, the server goes to sleep when not in use. It may take 20–30 seconds to wake up the first time you visit—this is normal for free deployments.
   
 ## App Pages
