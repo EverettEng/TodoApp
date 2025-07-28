@@ -18,6 +18,7 @@ Full-stack app created by Everett Eng as an introduction to full stack developme
   - Toggle completion of todos
 - Profile
   - View number of complete, incomplete, and overdue todos
+  - Permanently delete account
 
 ## Stack Used
 **Frontend**: React.js  
