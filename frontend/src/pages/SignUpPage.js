@@ -27,11 +27,36 @@ const SignUpPage = () => {
   // Handles form submission and signup logic
   const handleSubmit = async (event_object) => {
     event_object.preventDefault();
+
+    // Validate username format (letters, numbers, and underscore only)
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+    if (!usernameRegex.test(username)) {
+      setError("Username can only contain letters, numbers, and underscores");
+      return;
+    }
+
+    // Validate password contains only allowed characters
+    const passwordRegex = /^[a-zA-Z0-9@#$%^&*()_\-+={}|\\:;"'<>,./?]+$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password can only contain: letters, numbers, and these symbols: @ # $ % ^ & * ( ) _ - + = { } | \\ : ; \" ' < > , . / ?"
+      );
+      return;
+    }
+
+    // Validate password contains at least one letter
+    const passwordHasLetter = /[a-zA-Z]/.test(password);
+    if (!passwordHasLetter) {
+      setError("Password must contain at least one letter");
+      return;
+    }
+
     // Check if passwords match
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
+
     try {
       // Send signup request to backend
       const response = await fetch(`${API_URL}/api/signup`, {
@@ -74,7 +99,7 @@ const SignUpPage = () => {
           <label>Password</label>
           <input
             type="password"
-            placeholder="Enter your password (Minimum 8 characters)"
+            placeholder="Enter your password (Min 8 characters, must contain at least 1 letter)"
             required
             minLength={8}
             maxLength={72}

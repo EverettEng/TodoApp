@@ -63,9 +63,6 @@ export function logout() {
   localStorage.removeItem("numCompletedTodos");
   localStorage.removeItem("numOverdueTodos");
   localStorage.setItem("loggedIn", "false");
-
-  // Force redirect to home page
-  window.location.href = "/";
 }
 
 export function clearAllAuthData() {

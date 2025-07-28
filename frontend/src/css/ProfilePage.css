@@ -1,22 +1,143 @@
-body.profile-page{
+body.profile-page {
   font-family: "Roboto", sans-serif;
   margin: 0;
   background-color: #f2f2f2;
-  color: black;
+  color: #333;
+  min-height: 100vh;
 }
 
-p.login a:visited {
-  color: blue;
+/* Navbar styles - keep as requested */
+.navbar ul {
+  padding: 0;
+  margin: 0; 
+  list-style-type: none;
+  font-family: "Roboto", sans-serif;
+  background-color: #333333;
+  color: #f2f2f2;
+  overflow: hidden;
+  display: flex; 
 }
 
-.greeting,
-.todo-stats p,
-.todo-information{
-  padding-left: 15px;
+.navbar a {
+  display: block; 
+  padding: 15px;
+  color: #f2f2f2;
+  text-decoration: none;
 }
 
-.confirm-delete-container{
+.navbar a:hover {
+  color: #f2f2f257;
+}
 
+/* Profile page content */
+.profile-content {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.profile-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #333;
+  margin: 0 0 15px 0;
+  letter-spacing: -1px;
+}
+
+.profile-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border: 1px solid #f0f0f0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.danger-zone {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.danger-title {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0 0 20px 0;
+  font-weight: 500;
+}
+
+.delete-account {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: transparent;
+  color: #dc3545;
+  border: 1.5px solid #dc3545;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+}
+
+.delete-account:hover {
+  background-color: #dc3545;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+.delete-account:active {
+  transform: translateY(0);
+}
+
+/* Confirm delete styles */
+.confirm-delete-container {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -27,6 +148,40 @@ p.login a:visited {
   color: black;
 }
 
-.profile-link:visited{
+.profile-link:visited {
   color: blue;
+}
+
+p.login a:visited {
+  color: blue;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .profile-content {
+    margin: 40px auto;
+    padding: 0 16px;
+  }
+  
+  .profile-title {
+    font-size: 2rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  
+  .stat-card {
+    padding: 20px 16px;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+  }
+  
+  .danger-zone {
+    padding-top: 30px;
+  }
 }

@@ -7,6 +7,8 @@ from sqlalchemy.orm import sessionmaker
 db_url = os.environ.get("DATABASE_URL")
 if db_url and db_url.startswith("postgres://"):
     db_url = db_url.replace("postgres://", "postgresql://")
+else:
+    db_url = "sqlite:///./todo.db"
 
 engine = create_engine(db_url)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
